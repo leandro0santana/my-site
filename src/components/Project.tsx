@@ -9,10 +9,22 @@ import {
 } from '@chakra-ui/react';
 import { FaArrowRight } from 'react-icons/fa';
 
-export function Project() {
+interface ProjectProps {
+  url: string;
+  image: string;
+  title: string;
+  description: string;
+}
+
+export function Project({
+  url,
+  image,
+  title,
+  description
+}: ProjectProps) {
   return (
     <Link
-      href="/"
+      href={`/cases/${url}`}
       w="100%"
       display="flex"
       flexDirection={["column", "row"]}
@@ -26,8 +38,8 @@ export function Project() {
     >
       <Box w={["100%", "40%"]}>
         <Image
-          src="/images/site-dizioli.png"
-          alt="Studio Dizioli"
+          src={`/images/${image}`}
+          alt={title}
           borderTopRadius={["16", "0"]}
           borderTopLeftRadius={["0", "16"]}
           borderBottomLeftRadius={["0", "16"]}
@@ -45,10 +57,10 @@ export function Project() {
             my="4"
             color="white"
           >
-            Studio Dizioli
+            {title}
           </Heading>
           <Text fontSize="md" color="white">
-            O Studio Dizioli é um estabelecimento de ensino de caráter técnico–artístico-profissional.
+            {description}
           </Text>
           <Text fontSize="md" color="white" my="2" display="flex" alignItems="center" justifyContent="flex-end">
             saiba mais <Icon as={FaArrowRight} size="25" ml="2" />

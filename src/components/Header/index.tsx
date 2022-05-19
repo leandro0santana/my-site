@@ -40,7 +40,7 @@ export function Header() {
         <Image
           src="/images/logo.svg"
           alt="LCS Projects"
-          boxSize="90px"
+          boxSize="100px"
           mx={["5", "5", "5", "auto"]}
         />
         

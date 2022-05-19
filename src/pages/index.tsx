@@ -7,17 +7,21 @@ import {
   Stack, 
   Text, 
   Link as ChakraLink, 
-  Divider, 
-  SimpleGrid,
-  Icon
+  Divider,
+  FormControl,
+  FormLabel,
+  Input,
+  FormHelperText,
+  Textarea,
+  Button 
 } from '@chakra-ui/react';
 import { Link } from 'react-scroll';
-import { FaCss3Alt, FaDocker, FaGitAlt, FaGithub, FaHtml5, FaNode, FaPhp, FaReact } from 'react-icons/fa';
-import { SiJavascript, SiTypescript, SiNextdotjs, SiStyledcomponents, SiExpress, SiJest, SiPostgresql, SiMicrosoftsqlserver, SiMysql } from 'react-icons/si';
 
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { Project } from '../components/Project';
 import { Skills } from '../components/Skills';
+import { SocialButton } from '../components/Footer/SocialButton';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 
 const Home: NextPage = () => {
   return (
@@ -27,8 +31,9 @@ const Home: NextPage = () => {
       justify="center"
       align="center"
       direction="column"
-      paddingTop={["20", "28"]}
+      paddingTop={["16", "28"]}
     >
+
       <WhatsAppButton />
 
       <Flex
@@ -37,7 +42,7 @@ const Home: NextPage = () => {
         align="center"
         w="100%"
         id="about"
-        my="6"
+        my="8"
       >
         <Flex
           w="100%"
@@ -131,6 +136,22 @@ const Home: NextPage = () => {
               src="/images/avatar.png"
               alt="Leandro Carneiro Santana"
             />
+            
+            <Flex justify="center" align="center" w="100%" mt="4">
+              <Stack spacing="4" direction="row">
+                <SocialButton
+                  href="https://github.com/leandro0santana/"
+                  icon={FaGithub} 
+                  title="Facebook Studio 92"
+                />
+
+                <SocialButton
+                  href="https://www.linkedin.com/in/leandro-carneiro-santana/"
+                  icon={FaLinkedin} 
+                  title="Instagram Studio 92"
+                />
+              </Stack>
+            </Flex>
           </Box>
         </Flex>
       </Flex>
@@ -148,14 +169,14 @@ const Home: NextPage = () => {
         align="center"
         w="100%"
         id="skills"
-        my="8"
+        my="14"
       >
         <Box
           w="100%"
           maxWidth={1280}
         >
           <Heading
-            fontSize={["2xl", "4xl"]}
+            fontSize={["4xl", "5xl"]}
             my="4"
             color="white"
             textAlign="center"
@@ -180,7 +201,7 @@ const Home: NextPage = () => {
         align="center"
         w="100%"
         id="projects"
-        my="6"
+        my="12"
       >
         <Box
           w="100%"
@@ -188,7 +209,7 @@ const Home: NextPage = () => {
           px="2"
         >
           <Heading
-            fontSize={["2xl", "4xl"]}
+            fontSize={["4xl", "5xl"]}
             my="4"
             color="white"
             textAlign="center"
@@ -197,7 +218,21 @@ const Home: NextPage = () => {
             Meus Projetos
           </Heading>
           
-          <Project />
+          <Stack spacing="8">
+            <Project
+              url="dizioli"
+              image="case-dizioli.png"
+              title="Studio Dizioli"
+              description="O Studio Dizioli é um estabelecimento de ensino de caráter técnico–artístico-profissional."
+            />
+
+            <Project
+              url="bethehero"
+              image="case-bethehero.png"
+              title="BE THE HERO"
+              description="Aplicação para as ongs fazer os cadastros, atualizações e exclusões dos seus casos"
+            />
+          </Stack>
         </Box>
       </Flex>
 
@@ -219,8 +254,95 @@ const Home: NextPage = () => {
         <Box
           w="100%"
           maxWidth={900}
-        ></Box>
+          as="form"
+          name="contact"
+          method="POST"
+          data-netlify="true"
+          mx={["4", "0"]}
+        >
+          <Heading
+            fontSize={["4xl", "5xl"]}
+            my="4"
+            color="white"
+            textAlign="center"
+            mb="8"
+          >
+            Entre em Contato
+          </Heading>
+
+          <Box bgColor="black.500" p={["7","10"]} borderRadius="24">
+            <Stack spacing="4">
+              <FormControl isRequired>
+                <FormLabel htmlFor="full-name">Nome Completo</FormLabel>
+                <Input id="full-name" name="full-name" placeholder="Jane Doe" borderColor="white" />
+              </FormControl>
+              
+              <Stack spacing="4" direction={["column", "row"]}>
+                <FormControl isRequired>
+                  <FormLabel htmlFor="email">E-mail</FormLabel>
+                  <Input id="email" name="email" type="email" placeholder="email@exemple.com" borderColor="white" />
+                  <FormHelperText>Nunca compartilharemos seu e-mail.</FormHelperText>
+                </FormControl>
+                
+                <FormControl isRequired>
+                  <FormLabel htmlFor="phone">Celular</FormLabel>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    maxLength={11}
+                    minLength={11}
+                    placeholder="11999999999"
+                    borderColor="white"
+                  />
+                  <FormHelperText>Nunca compartilharemos seu celular.</FormHelperText>
+                </FormControl>
+              </Stack>
+
+              <Box>
+                <Text mb="8px">Mensagem</Text>
+                <Textarea
+                  placeholder="Deixe sua mensagem"
+                  size="md"
+                  rows={6}
+                  resize="vertical"
+                  isRequired
+                  borderColor="white"
+                />
+              </Box>
+
+              <Flex align="center" justify="center">
+                <Button
+                  type="submit"
+                  loadingText="Loading"
+                  colorScheme="teal"
+                  variant="outline"
+                  spinnerPlacement="start"
+                  w="100%"
+                  maxWidth="300px"
+                  h="55px"
+                  bgColor="white"
+                  color="black"
+                  _hover={{
+                    filter: "brightness(0.9)",
+                  }}
+                  fontWeight="bold"
+                  fontSize="20"
+                  border="0"
+                >
+                  Enviar
+                </Button>
+              </Flex>
+            </Stack>
+          </Box>
+        </Box>
       </Flex>
+
+      <Divider
+        w="100%"
+        maxWidth={1440}
+        borderBottomWidth="2px"
+        variant="dashed" 
+      />
     </Flex>
   )
 }

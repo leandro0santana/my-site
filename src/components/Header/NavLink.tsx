@@ -11,15 +11,14 @@ export function NavLink({ children, href, ...rest }: NavLinkProps) {
   return (
     <ActiveNavLink shouldMatchExactHref={true} to={href} href={href}>
       <ChakraLink
-        bgColor="blackAlpha.700"
         borderRadius="6"
-        p="2"
+        p="3"
         fontWeight="bold"
+        color="gray.300"
         _hover={{
           textDecoration: "none",
-          bgColor: "white",
-          color: "black",
-          filter: "brightness(0.9)",
+          color: "white",
+          bgColor: "black.500",
         }}
         {...rest}
       >

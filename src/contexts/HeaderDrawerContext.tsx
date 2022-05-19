@@ -16,7 +16,7 @@ export function HeaderDrawerProvider({ children }: HeaderDrawerContextProps) {
 
   useEffect(() => {
     disclosure.onClose();
-  }, [router.asPath]);
+  }, [router.asPath, disclosure]);
 
   return (
     <HeaderDrawerContext.Provider value={disclosure}>

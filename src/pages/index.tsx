@@ -212,14 +212,13 @@ const Home: NextPage = () => {
           <Box
             w="100%"
             maxWidth={900}
-            px="2"
+            mx={["4", "0"]}
           >
             <Heading
               fontSize={["4xl", "5xl"]}
               my="4"
               color="white"
               textAlign="center"
-              mb="8"
             >
               Meus Projetos
             </Heading>

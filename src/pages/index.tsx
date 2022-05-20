@@ -58,13 +58,7 @@ const Home: NextPage = () => {
     message,
     form_contactus
   }) => {
-    const formContact = qs.stringify({
-      "form-name": encodeURIComponent(form_contactus),
-      "name": encodeURIComponent(name),
-      "email": encodeURIComponent(email),
-      "phone": encodeURIComponent(phone),
-      "message": encodeURIComponent(message),
-    });
+    const formContact = `form-name=${form_contactus}&name=${name}&email=${email}&phone=${phone}&message=${message}`;
 
     fetch("/", {
       method: "POST",

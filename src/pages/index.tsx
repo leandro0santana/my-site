@@ -31,6 +31,7 @@ interface DataFormContactUs {
   email: string;
   phone: string;
   message: string;
+  form_contactus: string;
 }
 
 const createContactUsFormSchema = yup.object().shape({
@@ -54,23 +55,22 @@ const Home: NextPage = () => {
     name,
     email,
     phone,
-    message
+    message,
+    form_contactus
   }) => {
     const formContact = qs.stringify({
+      "form-name": encodeURIComponent(form_contactus),
       "name": encodeURIComponent(name),
       "email": encodeURIComponent(email),
       "phone": encodeURIComponent(phone),
       "message": encodeURIComponent(message),
     });
 
-    console.log(formContact);
-
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: formContact,
-    })
-      .then(() => 
+    }).then(() => 
         toast({
           title: "Contato enviando.",
           description: "Seu contato foi enviando com sucesso.",
@@ -78,8 +78,7 @@ const Home: NextPage = () => {
           duration: 9000,
           isClosable: true,
         })
-      )
-      .catch((error) => 
+      ).catch((error) => 
         toast({
           title: "Erro ao enviar o contato.",
           description: error,
@@ -328,8 +327,7 @@ const Home: NextPage = () => {
             w="100%"
             maxWidth={900}
             as="form"
-            name="contact"
-            method="POST"
+            name="contactUs"
             data-netlify="true"
             mx={["4", "4", "4", "0"]}
             onSubmit={handleSubmit(handleSubmitContactUs)}
@@ -344,6 +342,12 @@ const Home: NextPage = () => {
             </Heading>
 
             <Box bgColor="black.500" p={["7","10"]} borderRadius="24">
+              <Input
+                type="hidden"
+                value="contactUs"
+                error={errors.form_contactus}
+                {...register("form_contactus")}
+              />
               <Stack spacing="4">
                 <Input
                   label="Nome Completo:"

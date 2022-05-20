@@ -24,7 +24,7 @@ export function Project({
 }: ProjectProps) {
   return (
     <Link
-      href={`/cases/${url}`}
+      href={url}
       w="100%"
       display="flex"
       flexDirection={["column", "row"]}
@@ -63,7 +63,7 @@ export function Project({
             {description}
           </Text>
           <Text fontSize="md" color="white" my="2" display="flex" alignItems="center" justifyContent="flex-end">
-            saiba mais <Icon as={FaArrowRight} size="25" ml="2" />
+           acesse o site <Icon as={FaArrowRight} size="25" ml="2" />
           </Text>
         </Box>
       </Flex>

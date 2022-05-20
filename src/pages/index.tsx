@@ -44,7 +44,7 @@ const createContactUsFormSchema = yup.object().shape({
 const Home: NextPage = () => {
   const toast = useToast();
 
-  const { register, handleSubmit, formState } = useForm<DataFormContactUs>({
+  const { register, handleSubmit, formState, setValue } = useForm<DataFormContactUs>({
     resolver: yupResolver(createContactUsFormSchema)
   });
 
@@ -64,23 +64,28 @@ const Home: NextPage = () => {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: formContact,
-    }).then(() => 
-        toast({
-          title: "Contato enviando.",
-          description: "Seu contato foi enviando com sucesso.",
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      ).catch((error) => 
-        toast({
-          title: "Erro ao enviar o contato.",
-          description: error,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-      );
+    }).then(() => {
+      toast({
+        title: "Contato enviando.",
+        description: "Seu contato foi enviando com sucesso.",
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      });
+      
+      setValue("name", "");
+      setValue("email", "");
+      setValue("phone", "");
+      setValue("message", "");
+    }).catch((error) => 
+      toast({
+        title: "Erro ao enviar o contato.",
+        description: error,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    );
   }
 
   return (
@@ -286,17 +291,31 @@ const Home: NextPage = () => {
             
             <Stack spacing="8">
               <Project
-                url="dizioli"
+                url="http://www.dizioli.art.br/"
                 image="case-dizioli.png"
                 title="Studio Dizioli"
                 description="O Studio Dizioli é um estabelecimento de ensino de caráter técnico–artístico-profissional."
               />
 
               <Project
-                url="bethehero"
+                url="https://betheheros.netlify.app/"
                 image="case-bethehero.png"
                 title="BE THE HERO"
-                description="Aplicação para as ongs fazer os cadastros, atualizações e exclusões dos seus casos"
+                description="Aplicação para as ongs fazer os cadastros, atualizações e exclusões dos seus casos."
+              />
+
+              <Project
+                url="https://githubexplorers.netlify.app/"
+                image="case-github-explore.png"
+                title="Explore repositórios no GitHub"
+                description="Aplicação para pesquisa repositórios no GitHub."
+              />
+
+              <Project
+                url="https://jfterceirizacao.com.br/"
+                image="case-jf.png"
+                title="Explore repositórios no GitHub"
+                description="Hoje a terceirização tornou-se uma realidade, da qual se desvincula a empresa de tarefas e administração de setores."
               />
             </Stack>
           </Box>

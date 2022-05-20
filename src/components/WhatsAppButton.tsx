@@ -13,8 +13,8 @@ export function WhatsAppButton() {
       borderRadius="50%"
       color="white"
       bg="#34af23"
-      w={["45px", "50px"]}
-      h={["45px", "50px"]}
+      w={["55px", "50px"]}
+      h={["55px", "50px"]}
       position="fixed"
       bottom="4"
       right="4"
@@ -24,7 +24,7 @@ export function WhatsAppButton() {
       zIndex="9"
       title="LCS Projects"
     >
-      <Icon as={FaWhatsapp} fontSize={["25", "30"]} />
+      <Icon as={FaWhatsapp} fontSize="30" />
     </Link>
   )
 }

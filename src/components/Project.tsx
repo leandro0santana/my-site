@@ -40,8 +40,8 @@ export function Project({
         <Image
           src={`/images/${image}`}
           alt={title}
-          borderTopRadius={["16", "0"]}
-          borderTopLeftRadius={["0", "16"]}
+          borderTopRightRadius={["16", "0"]}
+          borderTopLeftRadius={["16", "16"]}
           borderBottomLeftRadius={["0", "16"]}
         />
       </Box>

@@ -1,5 +1,5 @@
-import { Link, LinkProps, Icon } from '@chakra-ui/react';
 import { ElementType } from 'react';
+import { Link, LinkProps, Icon } from '@chakra-ui/react';
 
 interface SocialButtonProps extends LinkProps {
   icon: ElementType;
@@ -17,8 +17,8 @@ export function SocialButton({ href, icon, ...rest }: SocialButtonProps) {
       justifyContent="center"
       borderRadius="10px"
       color="white"
-      w="50px"
-      h="50px"
+      w="55px"
+      h="55px"
       _hover={{
         textDecoration: "none",
         color: "white",
@@ -26,7 +26,7 @@ export function SocialButton({ href, icon, ...rest }: SocialButtonProps) {
       }}
       {...rest}
     >
-      <Icon as={icon} fontSize="25" />
+      <Icon as={icon} fontSize="30" />
     </Link>
   )
 }

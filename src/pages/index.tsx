@@ -1,4 +1,6 @@
 import type { NextPage } from 'next';
+import qs from 'querystring';
+import Head from 'next/head';
 import { 
   Box, 
   Flex, 
@@ -8,23 +10,86 @@ import {
   Text, 
   Link as ChakraLink, 
   Divider,
-  FormControl,
-  FormLabel,
-  Input,
-  FormHelperText,
-  Textarea,
-  Button 
+  Button, 
+  useToast
 } from '@chakra-ui/react';
 import { Link } from 'react-scroll';
-import Head from 'next/head';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { Project } from '../components/Project';
 import { Skills } from '../components/Skills';
-import { SocialButton } from '../components/Footer/SocialButton';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { SocialButton } from '../components/SocialButton';
+import { Input } from '../components/Form/Input';
+import { Textarea } from '../components/Form/Textarea';
+
+interface DataFormContactUs {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}
+
+const createContactUsFormSchema = yup.object().shape({
+  name: yup.string().required("Nome Completo Obrigatório"),
+  email: yup.string().email("Digite um e-mail válido").required("E-mail Obrigatório"),
+  phone: yup.string().min(11, "Celular Obrigatório"),
+  message: yup.string().required("Mensagem Obrigatório"),
+});
 
 const Home: NextPage = () => {
+  const toast = useToast();
+
+  const { register, handleSubmit, formState } = useForm<DataFormContactUs>({
+    resolver: yupResolver(createContactUsFormSchema)
+  });
+
+  const { errors, isSubmitting } = formState;
+
+
+  const handleSubmitContactUs: SubmitHandler<DataFormContactUs> = async ({
+    name,
+    email,
+    phone,
+    message
+  }) => {
+    const formContact = qs.stringify({
+      "name": encodeURIComponent(name),
+      "email": encodeURIComponent(email),
+      "phone": encodeURIComponent(phone),
+      "message": encodeURIComponent(message),
+    });
+
+    console.log(formContact);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: formContact,
+    })
+      .then(() => 
+        toast({
+          title: "Contato enviando.",
+          description: "Seu contato foi enviando com sucesso.",
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      )
+      .catch((error) => 
+        toast({
+          title: "Erro ao enviar o contato.",
+          description: error,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+      );
+  }
+
   return (
     <>
       <Head>
@@ -37,7 +102,7 @@ const Home: NextPage = () => {
         justify="center"
         align="center"
         direction="column"
-        paddingTop={["16", "28"]}
+        paddingTop={["16", "16", "0", "28"]}
       >
 
         <WhatsAppButton />
@@ -55,9 +120,9 @@ const Home: NextPage = () => {
             maxWidth={1280}
             justify="center"
             align="center"
-            flexDirection={["column-reverse", "row"]}
+            flexDirection={["column-reverse", "column-reverse", "column-reverse", "row"]}
           >
-            <Box w={["100%", "70%"]} px="6">
+            <Box w={["100%", "100%", "100%", "70%"]} px="6">
               <Heading
                 fontSize={["xl", "2xl"]}
                 my="4"
@@ -86,7 +151,7 @@ const Home: NextPage = () => {
                   duration={500}
                 >
                   <ChakraLink
-                    w={["100%", "250px"]}
+                    w={["100%","100%", "250px", "250px"]}
                     h="55px"
                     display="flex"
                     justifyContent="center"
@@ -114,7 +179,7 @@ const Home: NextPage = () => {
                   duration={500}
                 >
                   <ChakraLink
-                    w={["100%", "250px"]}
+                    w={["100%","100%", "250px", "250px"]}
                     h="55px"
                     display="flex"
                     justifyContent="center"
@@ -137,12 +202,15 @@ const Home: NextPage = () => {
               </Stack>
             </Box>
 
-            <Box w={["100%", "30%"]}>
-              <Image
-                src="/images/avatar.png"
-                alt="Leandro Carneiro Santana"
-              />
-              
+            <Box w={["100%","100%", "100%", "30%"]}>
+              <Flex justify="center" align="center" w="100%">
+                <Image
+                  w={["100%","100%", "500px", "100%"]}
+                  src="/images/avatar.png"
+                  alt="Leandro Carneiro Santana"
+                />
+              </Flex>
+
               <Flex justify="center" align="center" w="100%" mt="4">
                 <Stack spacing="4" direction="row">
                   <SocialButton
@@ -183,9 +251,9 @@ const Home: NextPage = () => {
           >
             <Heading
               fontSize={["4xl", "5xl"]}
-              my="4"
               color="white"
               textAlign="center"
+              mb="8"
             >
               Skills
             </Heading>
@@ -212,13 +280,13 @@ const Home: NextPage = () => {
           <Box
             w="100%"
             maxWidth={900}
-            mx={["4", "0"]}
+            mx={["4", "4", "4", "0"]}
           >
             <Heading
               fontSize={["4xl", "5xl"]}
-              my="4"
               color="white"
               textAlign="center"
+              mb="8"
             >
               Meus Projetos
             </Heading>
@@ -254,7 +322,7 @@ const Home: NextPage = () => {
           align="center"
           w="100%"
           id="contact"
-          my="6"
+          my="10"
         >
           <Box
             w="100%"
@@ -263,11 +331,11 @@ const Home: NextPage = () => {
             name="contact"
             method="POST"
             data-netlify="true"
-            mx={["4", "0"]}
+            mx={["4", "4", "4", "0"]}
+            onSubmit={handleSubmit(handleSubmitContactUs)}
           >
             <Heading
               fontSize={["4xl", "5xl"]}
-              my="4"
               color="white"
               textAlign="center"
               mb="8"
@@ -277,50 +345,45 @@ const Home: NextPage = () => {
 
             <Box bgColor="black.500" p={["7","10"]} borderRadius="24">
               <Stack spacing="4">
-                <FormControl isRequired>
-                  <FormLabel htmlFor="full-name">Nome Completo</FormLabel>
-                  <Input id="full-name" name="full-name" placeholder="Jane Doe" borderColor="white" />
-                </FormControl>
+                <Input
+                  label="Nome Completo:"
+                  placeholder="Jane Doe"
+                  error={errors.name}
+                  {...register("name")}
+                />
                 
                 <Stack spacing="4" direction={["column", "row"]}>
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="email">E-mail</FormLabel>
-                    <Input id="email" name="email" type="email" placeholder="email@exemple.com" borderColor="white" />
-                    <FormHelperText>Nunca compartilharemos seu e-mail.</FormHelperText>
-                  </FormControl>
-                  
-                  <FormControl isRequired>
-                    <FormLabel htmlFor="phone">Celular</FormLabel>
-                    <Input
-                      id="phone"
-                      name="phone"
-                      maxLength={11}
-                      minLength={11}
-                      placeholder="11999999999"
-                      borderColor="white"
-                    />
-                    <FormHelperText>Nunca compartilharemos seu celular.</FormHelperText>
-                  </FormControl>
+                  <Input
+                    label="E-mail:"
+                    type="email"
+                    placeholder="email@exemple.com"
+                    error={errors.email}
+                    {...register("email")}
+                  />
+
+                  <Input
+                    label="Celular:"
+                    placeholder="(11) 99999-9999"
+                    maxLength={11}
+                    error={errors.phone}
+                    {...register("phone")}
+                  />
                 </Stack>
 
                 <Box>
-                  <Text mb="8px">Mensagem</Text>
+                  <Text mb="8px"></Text>
                   <Textarea
-                    id="message"
-                    name="message"
+                    label="Mensagem:"
                     placeholder="Deixe sua mensagem"
-                    size="md"
-                    rows={6}
-                    resize="vertical"
-                    isRequired
-                    borderColor="white"
+                    error={errors.message}
+                    {...register("message")}
                   />
                 </Box>
 
                 <Flex align="center" justify="center">
                   <Button
                     type="submit"
-                    loadingText="Loading"
+                    isLoading={isSubmitting}
                     colorScheme="teal"
                     variant="outline"
                     spinnerPlacement="start"

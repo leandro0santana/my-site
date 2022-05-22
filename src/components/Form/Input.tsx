@@ -22,7 +22,8 @@ const InputBase: ForwardRefRenderFunction<HTMLInputElement, InputProps>
           <ChakraInput
             id={name}
             name={name} 
-            borderColor="white" 
+            borderColor="white"
+            bgColor="transparent" 
             variant="filled"
             size="lg"
             _hover={{

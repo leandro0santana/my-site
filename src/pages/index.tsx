@@ -136,7 +136,7 @@ const Home: NextPage = () => {
                 Leandro Carneiro Santana
               </Heading>
               <Text fontSize={["md", "xl"]} align="justify" color="white">
-                Sou <strong>Desenvolvedor Full Stack</strong> e me introduzir no universo da programação pela faculdade onde me formei em <strong>Análise e Desenvolvimento de Sistemas</strong> e também onde pude participar de um <strong>Hackathon Mais 2017</strong> com o projeto <strong>Freya</strong>. 
+                Sou <strong>Desenvolvedor Full Stack</strong> e me introduzir no universo da programação pela faculdade onde me formei em <strong>Análise e Desenvolvimento de Sistemas</strong> e também onde pude participar de um <strong><ChakraLink href="https://benchmarkingbrasil.com.br/ranking-hackathon-mais-2017/" textDecoration="underline" _hover={{ filter: "brightness(0.9)" }}>Hackathon Mais 2017</ChakraLink></strong> com o projeto <strong>Freya</strong>. 
                 Então se você está a procura de um desenvolvedor para <strong>trabalhar no seu site ou aplicativo</strong>, criar um para você ou sua empresa, encontrou o dev certo
               </Text>
               <Stack spacing="4" direction={["column", "row"]} my="6">
@@ -156,7 +156,7 @@ const Home: NextPage = () => {
                     alignItems="center"
                     bgColor="white"
                     color="black"
-                    borderRadius="6"
+                    borderRadius="12"
                     fontWeight="bold"
                     fontSize="lg"
                     _hover={{
@@ -184,7 +184,7 @@ const Home: NextPage = () => {
                     alignItems="center"
                     border="2px solid white"
                     color="white"
-                    borderRadius="6"
+                    borderRadius="12"
                     fontWeight="bold"
                     fontSize="lg"
                     _hover={{
@@ -214,13 +214,13 @@ const Home: NextPage = () => {
                   <SocialButton
                     href="https://github.com/leandro0santana/"
                     icon={FaGithub} 
-                    title="Facebook Studio 92"
+                    title="GitHub - Leandro Carneiro Santana"
                   />
 
                   <SocialButton
                     href="https://www.linkedin.com/in/leandro-carneiro-santana/"
                     icon={FaLinkedin} 
-                    title="Instagram Studio 92"
+                    title="Linkedin - Leandro Carneiro Santana"
                   />
                 </Stack>
               </Flex>
@@ -380,22 +380,19 @@ const Home: NextPage = () => {
 
                   <Input
                     label="Celular:"
-                    placeholder="(11) 99999-9999"
+                    placeholder="11999999999"
                     maxLength={11}
                     error={errors.phone}
                     {...register("phone")}
                   />
                 </Stack>
-
-                <Box>
-                  <Text mb="8px"></Text>
-                  <Textarea
-                    label="Mensagem:"
-                    placeholder="Deixe sua mensagem"
-                    error={errors.message}
-                    {...register("message")}
-                  />
-                </Box>
+                
+                <Textarea
+                  label="Mensagem:"
+                  placeholder="Deixe sua mensagem"
+                  error={errors.message}
+                  {...register("message")}
+                />
 
                 <Flex align="center" justify="center">
                   <Button
@@ -415,6 +412,7 @@ const Home: NextPage = () => {
                     fontWeight="bold"
                     fontSize="20"
                     border="0"
+                    borderRadius="12"
                   >
                     Enviar
                   </Button>

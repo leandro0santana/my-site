@@ -15,7 +15,7 @@ export function SocialButton({ href, icon, ...rest }: SocialButtonProps) {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      borderRadius="10px"
+      borderRadius="16"
       color="white"
       w="55px"
       h="55px"

@@ -52,13 +52,13 @@ export function Footer() {
             <SocialButton
               href="https://github.com/leandro0santana/"
               icon={FaGithub} 
-              title="Facebook Studio 92"
+              title="GitHub - Leandro Carneiro Santana"
             />
 
             <SocialButton
               href="https://www.linkedin.com/in/leandro-carneiro-santana/"
               icon={FaLinkedin} 
-              title="Instagram Studio 92"
+              title="Linkedin - Leandro Carneiro Santana"
             />
           </Stack>
         </Flex>

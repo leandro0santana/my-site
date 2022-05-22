@@ -12,7 +12,7 @@ export function NavLink({ children, href, ...rest }: NavLinkProps) {
   return (
     <ActiveNavLink shouldMatchExactHref={true} to={href} href={href}>
       <ChakraLink
-        borderRadius="6"
+        borderRadius="12"
         p="3"
         fontWeight="bold"
         color="gray.300"

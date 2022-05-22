@@ -25,6 +25,7 @@ export function Project({
   return (
     <Link
       href={url}
+      target="_blank"
       w="100%"
       display="flex"
       flexDirection={["column", "row"]}

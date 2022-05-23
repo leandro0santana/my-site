@@ -14,7 +14,8 @@ import {
   useToast
 } from '@chakra-ui/react';
 import { Link } from 'react-scroll';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaPhone } from 'react-icons/fa';
+import { FiMail } from 'react-icons/fi';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
@@ -49,7 +50,6 @@ const Home: NextPage = () => {
   });
 
   const { errors, isSubmitting } = formState;
-
 
   const handleSubmitContactUs: SubmitHandler<DataFormContactUs> = async ({
     name,
@@ -222,6 +222,18 @@ const Home: NextPage = () => {
                     icon={FaLinkedin} 
                     title="Linkedin - Leandro Carneiro Santana"
                   />
+
+                  <SocialButton
+                    href="mailto:leandro.c.santana@hotmail.com"
+                    icon={FiMail} 
+                    title="E-mail - Leandro Carneiro Santana"
+                  />
+
+                  <SocialButton
+                    href="tel:11983849758"
+                    icon={FaPhone} 
+                    title="Telefone - Leandro Carneiro Santana"
+                  />
                 </Stack>
               </Flex>
             </Box>
@@ -342,6 +354,7 @@ const Home: NextPage = () => {
             as="form"
             name="contactUs"
             data-netlify="true"
+            data-netlify-recaptcha="true"
             mx={["4", "4", "4", "0"]}
             onSubmit={handleSubmit(handleSubmitContactUs)}
           >

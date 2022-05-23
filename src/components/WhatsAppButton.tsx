@@ -22,7 +22,7 @@ export function WhatsAppButton() {
         filter: "brightness(0.8)",
       }}
       zIndex="9"
-      title="LCS Projects"
+      title="WhatsApp - LCS Projects"
     >
       <Icon as={FaWhatsapp} fontSize="30" />
     </Link>

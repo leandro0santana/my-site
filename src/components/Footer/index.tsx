@@ -1,5 +1,6 @@
 import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
+import { FiMail } from "react-icons/fi";
 
 import { SocialButton } from "../SocialButton";
 
@@ -59,6 +60,18 @@ export function Footer() {
               href="https://www.linkedin.com/in/leandro-carneiro-santana/"
               icon={FaLinkedin} 
               title="Linkedin - Leandro Carneiro Santana"
+            />
+
+            <SocialButton
+              href="mailto:leandro.c.santana@hotmail.com"
+              icon={FiMail} 
+              title="E-mail - Leandro Carneiro Santana"
+            />
+
+            <SocialButton
+              href="tel:11983849758"
+              icon={FaPhone} 
+              title="Telefone - Leandro Carneiro Santana"
             />
           </Stack>
         </Flex>

@@ -407,6 +407,10 @@ const Home: NextPage = () => {
                   {...register("message")}
                 />
 
+                <Flex align="center" justify="center" my="4">
+                  <div data-netlify-recaptcha="true"></div>
+                </Flex>
+
                 <Flex align="center" justify="center">
                   <Button
                     type="submit"

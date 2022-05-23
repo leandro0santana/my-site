@@ -354,7 +354,6 @@ const Home: NextPage = () => {
             as="form"
             name="contactUs"
             data-netlify="true"
-            data-netlify-recaptcha="true"
             mx={["4", "4", "4", "0"]}
             onSubmit={handleSubmit(handleSubmitContactUs)}
           >
@@ -406,10 +405,6 @@ const Home: NextPage = () => {
                   error={errors.message}
                   {...register("message")}
                 />
-
-                <Flex align="center" justify="center" my="4">
-                  <div data-netlify-recaptcha="true"></div>
-                </Flex>
 
                 <Flex align="center" justify="center">
                   <Button

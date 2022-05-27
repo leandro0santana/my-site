@@ -2,8 +2,28 @@ import {
   SimpleGrid,
   Icon
 } from '@chakra-ui/react';
-import { FaCss3Alt, FaDocker, FaGitAlt, FaGithub, FaHtml5, FaNode, FaPhp, FaReact } from 'react-icons/fa';
-import { SiJavascript, SiTypescript, SiNextdotjs, SiStyledcomponents, SiExpress, SiJest, SiPostgresql, SiMicrosoftsqlserver, SiMysql } from 'react-icons/si';
+import { 
+  FaCss3Alt, 
+  FaDocker, 
+  FaGitAlt, 
+  FaGithub, 
+  FaHtml5, 
+  FaNode, 
+  FaPhp, 
+  FaReact 
+} from 'react-icons/fa';
+import { 
+  SiJavascript, 
+  SiTypescript, 
+  SiNextdotjs, 
+  SiStyledcomponents, 
+  SiExpress, 
+  SiJest, 
+  SiPostgresql, 
+  SiMicrosoftsqlserver, 
+  SiMysql, 
+  SiChakraui 
+} from 'react-icons/si';
 
 export function Skills() {
   return (
@@ -19,6 +39,7 @@ export function Skills() {
       <Icon as={FaNode} fontSize="50" />
       <Icon as={SiNextdotjs} fontSize="50" />
       <Icon as={SiStyledcomponents} fontSize="50" />
+      <Icon as={SiChakraui} fontSize="50" />
       <Icon as={SiExpress} fontSize="50" />
       <Icon as={SiJest} fontSize="50" />
       <Icon as={FaDocker} fontSize="50" />

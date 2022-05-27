@@ -1,5 +1,4 @@
 import type { NextPage } from 'next';
-import qs from 'querystring';
 import Head from 'next/head';
 import { 
   Box, 
@@ -11,87 +10,28 @@ import {
   Link as ChakraLink, 
   Divider,
   Button, 
-  useToast
+  useToast,
+  SimpleGrid,
+  Icon
 } from '@chakra-ui/react';
 import { Link } from 'react-scroll';
-import { FaGithub, FaLinkedin, FaPhone } from 'react-icons/fa';
+import { FaCode, FaGithub, FaLaptopCode, FaLinkedin, FaPencilRuler, FaPhone, FaRocket, FaServer, FaSuitcase } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { yupResolver } from "@hookform/resolvers/yup";
-import * as yup from "yup";
+import { GrServices } from 'react-icons/gr';
 
 import { WhatsAppButton } from '../components/WhatsAppButton';
 import { Project } from '../components/Project';
 import { Skills } from '../components/Skills';
 import { SocialButton } from '../components/SocialButton';
-import { Input } from '../components/Form/Input';
-import { Textarea } from '../components/Form/Textarea';
-
-interface DataFormContactUs {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-  form_contactus: string;
-}
-
-const createContactUsFormSchema = yup.object().shape({
-  name: yup.string().required("Nome Completo Obrigatório"),
-  email: yup.string().email("Digite um e-mail válido").required("E-mail Obrigatório"),
-  phone: yup.string().min(11, "Celular Obrigatório"),
-  message: yup.string().required("Mensagem Obrigatório"),
-});
+import { Service } from '../components/Service';
+import { ContactUs } from '../components/Form/ContactUs';
 
 const Home: NextPage = () => {
-  const toast = useToast();
-
-  const { register, handleSubmit, formState, setValue } = useForm<DataFormContactUs>({
-    resolver: yupResolver(createContactUsFormSchema)
-  });
-
-  const { errors, isSubmitting } = formState;
-
-  const handleSubmitContactUs: SubmitHandler<DataFormContactUs> = async ({
-    name,
-    email,
-    phone,
-    message,
-    form_contactus
-  }) => {
-    const formContact = `form-name=${form_contactus}&name=${name}&email=${email}&phone=${phone}&message=${message}`;
-
-    fetch("/", {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: formContact,
-    }).then(() => {
-      toast({
-        title: "Contato enviando.",
-        description: "Seu contato foi enviando com sucesso.",
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      });
-      
-      setValue("name", "");
-      setValue("email", "");
-      setValue("phone", "");
-      setValue("message", "");
-    }).catch((error) => 
-      toast({
-        title: "Erro ao enviar o contato.",
-        description: error,
-        status: "success",
-        duration: 9000,
-        isClosable: true,
-      })
-    );
-  }
 
   return (
     <>
       <Head>
-        <title>LCS Projects</title>
+        <title>LCS Projects | Freelance Developer</title>
         <meta name="description" content="Leandro Carneiro Santana, desenvolvedor full stack para trabalhar no seu site ou aplicativo" />
       </Head>
       <Flex
@@ -252,6 +192,60 @@ const Home: NextPage = () => {
           justify="center"
           align="center"
           w="100%"
+          id="services"
+          my="14"
+        >
+          <Box
+            w="100%"
+            maxWidth={1280}
+          >
+            <Heading
+              fontSize={["4xl", "5xl"]}
+              color="white"
+              textAlign="center"
+              mb="8"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+            >
+              <Icon as={FaServer}  mr="4" /> Serviços
+            </Heading>
+            <Flex align="center" justify="center">
+              <SimpleGrid flex="1" gap="4" minChildWidth="400px" p={["auto", "2"]} my="6">
+                <Service
+                  icon={FaPencilRuler}
+                  title="UX/UI Design"
+                  description="Desenvolvimento de interfaces modernas e atraentes para gerar resultados para seu negócio, baseado na pesquisa e criação de design de alta fidelidade concentrado na experiencia do usuario."
+                />
+
+                <Service
+                  icon={FaLaptopCode}
+                  title="Criação de Sites/Aplicativos"
+                  description="Desenvolvimento completo e exclusivo de sites institucionais, lojas virtuais, blogs, one page modernas, atraentes, otimizado e com Responsividade."
+                />
+
+                <Service
+                  icon={FaRocket}
+                  title="Landing Pages para Infoprodutores"
+                  description="Desenvolvimento de paginas de vendas, captura, obrigado e checkout de alta conversão, concentrado na experiencia do usuario e atento as especificações do seu persona."
+                />
+              </SimpleGrid>
+            </Flex>
+          </Box>
+        </Flex>
+
+        <Divider
+          w="100%"
+          maxWidth={1440}
+          borderBottomWidth="2px"
+          variant="dashed" 
+        />
+
+        <Flex
+          as="section"
+          justify="center"
+          align="center"
+          w="100%"
           id="skills"
           my="14"
         >
@@ -264,8 +258,11 @@ const Home: NextPage = () => {
               color="white"
               textAlign="center"
               mb="8"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
             >
-              Skills
+              <Icon as={FaCode} mr="4" />  Skills
             </Heading>
 
             <Skills />
@@ -295,10 +292,12 @@ const Home: NextPage = () => {
             <Heading
               fontSize={["4xl", "5xl"]}
               color="white"
-              textAlign="center"
               mb="8"
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
             >
-              Meus Projetos
+              <Icon as={FaSuitcase} mr="4" />  Meus Projetos
             </Heading>
             
             <Stack spacing="8">
@@ -339,100 +338,8 @@ const Home: NextPage = () => {
           borderBottomWidth="2px"
           variant="dashed" 
         />
-        
-        <Flex
-          as="section"
-          justify="center"
-          align="center"
-          w="100%"
-          id="contact"
-          my="10"
-        >
-          <Box
-            w="100%"
-            maxWidth={900}
-            as="form"
-            name="contactUs"
-            data-netlify="true"
-            mx={["4", "4", "4", "0"]}
-            onSubmit={handleSubmit(handleSubmitContactUs)}
-          >
-            <Heading
-              fontSize={["4xl", "5xl"]}
-              color="white"
-              textAlign="center"
-              mb="8"
-            >
-              Entre em Contato
-            </Heading>
 
-            <Box bgColor="black.500" p={["7","10"]} borderRadius="24">
-              <Input
-                type="hidden"
-                value="contactUs"
-                error={errors.form_contactus}
-                {...register("form_contactus")}
-              />
-              <Stack spacing="4">
-                <Input
-                  label="Nome Completo:"
-                  placeholder="Jane Doe"
-                  error={errors.name}
-                  {...register("name")}
-                />
-                
-                <Stack spacing="4" direction={["column", "row"]}>
-                  <Input
-                    label="E-mail:"
-                    type="email"
-                    placeholder="email@exemple.com"
-                    error={errors.email}
-                    {...register("email")}
-                  />
-
-                  <Input
-                    label="Celular:"
-                    placeholder="11999999999"
-                    maxLength={11}
-                    error={errors.phone}
-                    {...register("phone")}
-                  />
-                </Stack>
-                
-                <Textarea
-                  label="Mensagem:"
-                  placeholder="Deixe sua mensagem"
-                  error={errors.message}
-                  {...register("message")}
-                />
-
-                <Flex align="center" justify="center">
-                  <Button
-                    type="submit"
-                    isLoading={isSubmitting}
-                    colorScheme="teal"
-                    variant="outline"
-                    spinnerPlacement="start"
-                    w="100%"
-                    maxWidth="300px"
-                    h="55px"
-                    bgColor="white"
-                    color="black"
-                    _hover={{
-                      filter: "brightness(0.9)",
-                    }}
-                    fontWeight="bold"
-                    fontSize="20"
-                    border="0"
-                    borderRadius="12"
-                  >
-                    Enviar
-                  </Button>
-                </Flex>
-              </Stack>
-            </Box>
-          </Box>
-        </Flex>
+        <ContactUs />
 
         <Divider
           w="100%"

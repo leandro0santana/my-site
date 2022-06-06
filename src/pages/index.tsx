@@ -168,12 +168,6 @@ const Home: NextPage = () => {
                     icon={FiMail} 
                     title="E-mail - Leandro Carneiro Santana"
                   />
-
-                  <SocialButton
-                    href="tel:11983849758"
-                    icon={FaPhone} 
-                    title="Telefone - Leandro Carneiro Santana"
-                  />
                 </Stack>
               </Flex>
             </Box>
@@ -325,7 +319,7 @@ const Home: NextPage = () => {
               <Project
                 url="https://jfterceirizacao.com.br/"
                 image="case-jf.png"
-                title="Explore repositórios no GitHub"
+                title="JF Tercerização"
                 description="Hoje a terceirização tornou-se uma realidade, da qual se desvincula a empresa de tarefas e administração de setores."
               />
             </Stack>

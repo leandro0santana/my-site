@@ -17,8 +17,8 @@ export function SocialButton({ href, icon, ...rest }: SocialButtonProps) {
       justifyContent="center"
       borderRadius="16"
       color="white"
-      w="55px"
-      h="55px"
+      w="50px"
+      h="50px"
       _hover={{
         textDecoration: "none",
         color: "white",

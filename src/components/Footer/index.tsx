@@ -67,12 +67,6 @@ export function Footer() {
               icon={FiMail} 
               title="E-mail - Leandro Carneiro Santana"
             />
-
-            <SocialButton
-              href="tel:11983849758"
-              icon={FaPhone} 
-              title="Telefone - Leandro Carneiro Santana"
-            />
           </Stack>
         </Flex>
       </Flex>

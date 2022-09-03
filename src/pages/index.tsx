@@ -1,30 +1,36 @@
+import {
+  Box,
+  Divider,
+  Flex,
+  Heading,
+  Icon,
+  Image,
+  Link as ChakraLink,
+  SimpleGrid,
+  Stack,
+  Text
+} from '@chakra-ui/react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { 
-  Box, 
-  Flex, 
-  Heading, 
-  Image, 
-  Stack, 
-  Text, 
-  Link as ChakraLink, 
-  Divider,
-  Button, 
-  useToast,
-  SimpleGrid,
-  Icon
-} from '@chakra-ui/react';
-import { Link } from 'react-scroll';
-import { FaCode, FaGithub, FaLaptopCode, FaLinkedin, FaPencilRuler, FaPhone, FaRocket, FaServer, FaSuitcase } from 'react-icons/fa';
+import {
+  FaCode,
+  FaGithub,
+  FaLaptopCode,
+  FaLinkedin,
+  FaPencilRuler,
+  FaRocket,
+  FaServer,
+  FaSuitcase
+} from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
-import { GrServices } from 'react-icons/gr';
+import { Link } from 'react-scroll';
 
-import { WhatsAppButton } from '../components/WhatsAppButton';
+import { ContactUs } from '../components/Form/ContactUs';
 import { Project } from '../components/Project';
+import { Service } from '../components/Service';
 import { Skills } from '../components/Skills';
 import { SocialButton } from '../components/SocialButton';
-import { Service } from '../components/Service';
-import { ContactUs } from '../components/Form/ContactUs';
+import { WhatsAppButton } from '../components/WhatsAppButton';
 
 const Home: NextPage = () => {
 
@@ -174,20 +180,14 @@ const Home: NextPage = () => {
           </Flex>
         </Flex>
 
-        <Divider
-          w="100%"
-          maxWidth={1440}
-          borderBottomWidth="2px"
-          variant="dashed" 
-        />
-
         <Flex
           as="section"
           justify="center"
           align="center"
           w="100%"
           id="services"
-          my="14"
+          py="16"
+          bgColor="black.500"
         >
           <Box
             w="100%"
@@ -228,24 +228,17 @@ const Home: NextPage = () => {
           </Box>
         </Flex>
 
-        <Divider
-          w="100%"
-          maxWidth={1440}
-          borderBottomWidth="2px"
-          variant="dashed" 
-        />
-
         <Flex
           as="section"
           justify="center"
           align="center"
           w="100%"
           id="skills"
-          my="14"
+          py="16"
         >
           <Box
             w="100%"
-            maxWidth={1280}
+            maxWidth={900}
           >
             <Heading
               fontSize={["4xl", "5xl"]}
@@ -262,13 +255,6 @@ const Home: NextPage = () => {
             <Skills />
           </Box>
         </Flex>
-
-        <Divider
-          w="100%"
-          maxWidth={1440}
-          borderBottomWidth="2px"
-          variant="dashed" 
-        />
         
         <Flex
           as="section"
@@ -276,11 +262,12 @@ const Home: NextPage = () => {
           align="center"
           w="100%"
           id="projects"
-          my="12"
+          py="16"
+          bgColor="black.500"
         >
           <Box
             w="100%"
-            maxWidth={900}
+            maxWidth={1200}
             mx={["4", "4", "4", "0"]}
           >
             <Heading
@@ -294,12 +281,19 @@ const Home: NextPage = () => {
               <Icon as={FaSuitcase} mr="4" />  Meus Projetos
             </Heading>
             
-            <Stack spacing="8">
+            <SimpleGrid flex="1" gap="6" minChildWidth="310px" p={["5", "2"]} mx="auto" my="6">
               <Project
                 url="http://www.dizioli.art.br/"
                 image="case-dizioli.png"
                 title="Studio Dizioli"
                 description="O Studio Dizioli é um estabelecimento de ensino de caráter técnico–artístico-profissional."
+              />
+
+              <Project
+                url="https://jfterceirizacao.com.br/"
+                image="case-jf.png"
+                title="JF Tercerização"
+                description="Hoje a terceirização tornou-se uma realidade, da qual se desvincula a empresa de tarefas e administração de setores."
               />
 
               <Project
@@ -317,27 +311,26 @@ const Home: NextPage = () => {
               />
 
               <Project
-                url="https://jfterceirizacao.com.br/"
-                image="case-jf.png"
-                title="JF Tercerização"
-                description="Hoje a terceirização tornou-se uma realidade, da qual se desvincula a empresa de tarefas e administração de setores."
+                url="https://ignite-lab-react-event-platform-three.vercel.app/"
+                image="case-plataforma-eventos.png"
+                title="Plataforma de evento"
+                description="Aplicação para a realização de eventos on-line."
               />
-            </Stack>
+
+              <Project
+                url="https://studio92homologacao.netlify.app/"
+                image="case-studio92.png"
+                title="Studio 92 Beauty & SPA"
+                description="Site em construção para o Studio 92, onde também vou construir a parte de agedamento e cadastro de cliente e profissional"
+              />
+            </SimpleGrid>
           </Box>
         </Flex>
-
-        <Divider
-          w="100%"
-          maxWidth={1440}
-          borderBottomWidth="2px"
-          variant="dashed" 
-        />
-
+        
         <ContactUs />
 
         <Divider
           w="100%"
-          maxWidth={1440}
           borderBottomWidth="2px"
           variant="dashed" 
         />

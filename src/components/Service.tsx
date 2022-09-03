@@ -1,5 +1,5 @@
+import { Flex, Heading, Icon, Text } from "@chakra-ui/react";
 import { ElementType } from "react";
-import { AlertTitle, Flex, Heading, Icon, Text } from "@chakra-ui/react";
 
 interface ServiceProps {
   icon: ElementType;
@@ -20,7 +20,7 @@ export function Service({
       maxW={400}
       h={400}
       flexDirection="column"
-      bgColor="black.500"
+      bgColor="black.700"
       p="6"
       borderRadius="16"
       border="2px solid transparent"

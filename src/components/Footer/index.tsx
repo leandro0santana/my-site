@@ -1,5 +1,5 @@
 import { Box, Flex, Image, Stack, Text } from "@chakra-ui/react";
-import { FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { FiMail } from "react-icons/fi";
 
 import { SocialButton } from "../SocialButton";
@@ -11,7 +11,7 @@ export function Footer() {
       align="center"
       w="100%"
       h={[220, 220, 150, 50]}
-      my={["8", "4"]}
+      my={["8", "6"]}
     >
       <Flex
         w="100%"

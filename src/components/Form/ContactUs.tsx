@@ -1,11 +1,11 @@
 import { Box, Button, Flex, Heading, Icon, Stack, useToast } from '@chakra-ui/react';
-import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from "@hookform/resolvers/yup";
+import { SubmitHandler, useForm } from 'react-hook-form';
 import * as yup from "yup";
 
+import { FaCommentDots } from 'react-icons/fa';
 import { Input } from './Input';
 import { Textarea } from './Textarea';
-import { FaCommentDots } from 'react-icons/fa';
 
 interface DataFormContactUs {
   name: string;
@@ -75,7 +75,7 @@ export function ContactUs() {
       align="center"
       w="100%"
       id="contact"
-      my="10"
+      py="16"
     >
       <Box
         w="100%"
